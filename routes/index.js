@@ -1,13 +1,13 @@
-var express = require('express');
-var router = express.Router();
-const NodeCache = require( "node-cache" );
+const express = require('express')
+const router = express.Router()
+const NodeCache = require('node-cache')
 
-const myCache = new NodeCache();
+const myCache = new NodeCache()
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', (req, res, next) => {
+  res.render('index', { title: 'Express' })
+})
 
 router.post('/:apiName', (req, res) => {
   myCache.set(req.params.apiName, req.body)
@@ -29,7 +29,7 @@ router.get('/:apiName', (req, res) => {
   if (!data) {
     res.send({
       data: [],
-      message: "not found any data"
+      message: 'not found any data'
     })
   }
   res.send({
@@ -37,4 +37,4 @@ router.get('/:apiName', (req, res) => {
     message: 'success'
   })
 })
-module.exports = router;
+module.exports = router
